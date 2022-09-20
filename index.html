@@ -17,14 +17,8 @@
     />
 
     <meta property="og:type" content="article" />
-    <meta
-      property="og:url"
-      content=""
-    />
-    <meta
-      property="og:title"
-      content="How to make a star rating with JS"
-    />
+    <meta property="og:url" content="" />
+    <meta property="og:title" content="How to make a star rating with JS" />
     <meta
       property="og:description"
       content="Today you will learn how to make a rating using HTML5,CSS3 and JavaScript."
@@ -91,7 +85,58 @@
       </div>
     </section>
 
-  
+    <script>
+      const star = document.querySelectorAll(".star-ele");
+      const ans = document.getElementById("answer");
+
+      //  This function is called when the user clicks on any star. It gets the value of the star
+      // clicked and calls the function `star_none()` to make all the stars grey. Then it calls the
+      // function `fun_str()` to get the answer and the color of the answer. Then it sets the answer
+      // and the color of the answer. Then it sets the color of the stars clicked to yellow.
+
+      function rating_star(ele) {
+        star_value = ele.getAttribute("data-value");
+        star_none();
+        var answer = fun_str(star_value);
+        ans.innerHTML = answer.rate;
+        ans.style.color = answer.color;
+        for (let i = 0; i < star_value; i++) {
+          star[i].style.color = "#FDCC0D";
+        }
+      }
+
+      function star_none() {
+        for (let i = 0; i < star.length; i++) {
+          star[i].style.color = "grey";
+        }
+      }
+
+      function fun_str(value) {
+        function ans_rate(rate, color) {
+          this.rate = rate;
+          this.color = color;
+        }
+
+        switch (value) {
+          case "1":
+            var number = new ans_rate("Very Bad", "#ea7373");
+            break;
+          case "2":
+            var number = new ans_rate("Bad", "rgba(255, 0, 0, 0.68)");
+            break;
+          case "3":
+            var number = new ans_rate("Average", "#28b728b8");
+            break;
+          case "4":
+            var number = new ans_rate("Good", "#28b728");
+            break;
+          case "5":
+            var number = new ans_rate("Very Good", "green");
+            break;
+        }
+        return number;
+      }
+    </script>
 
     <script
       type="module"
